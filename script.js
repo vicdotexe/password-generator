@@ -24,15 +24,17 @@ function writePassword() {
 
     // make sure the prompts returned succesfully
     if (settings != null){
-        var password = generatePassword(settings);
 
-        var isValid = validatePassword(password, settings);
-        
-        while (!isValid){
+        var isValid = false; //allow loop to start
+        var attempts = 0; //for logging loop attempts
+
+        while (!isValid){ //regenerate password until it becomes valid
             password = generatePassword(settings);
             isValid = validatePassword(password, settings);
+            attempts++;
         }
 
+        console.log(`${attempts} attempt(s)`);
         passwordText.value = password;
         alert(`Password Generated: ${password}`);
     }
