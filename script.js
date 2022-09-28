@@ -19,7 +19,11 @@ function writePassword() {
     // make sure the prompts returned succesfully
     if (settings != null){
         var password = generatePassword(settings);
-        console.log(password);
+        passwordText.value = password;
+        alert(`Password Generated: ${password}`);
+    }
+    else{ // if prompts were not valid, then we should reset the text area
+        passwordText.value = "";
     }
 
 }
@@ -91,3 +95,4 @@ function generatePassword(settings){
 
     return password;
 }
+
