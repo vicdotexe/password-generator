@@ -33,13 +33,10 @@ function promptUserSettings(){
         alert("Must enter a valid number between 8 and 128");
         return null;
     }
+    
     settings.count = qty;
-
-    var useUpper = confirm("Use upper-case characters?");
-    settings.upper = useUpper;
-
-    var useLower = confirm("Use lower-case characters?");
-    settings.lower = useLower;
+    settings.upper = confirm("Use upper-case characters?");
+    settings.lower = confirm("Use lower-case characters?");
 
     // return null if impossible
     if (!useUpper && !useLower){
@@ -47,11 +44,8 @@ function promptUserSettings(){
         return null;
     }
 
-    var useNumeric = confirm("Use numeric characters?");
-    settings.numeric = useNumeric;
-
-    var useSpecial = confirm("Use special characters?");
-    settings.special = useSpecial;
+    settings.numeric = confirm("Use numeric characters?");
+    settings.special = confirm("Use special characters?");
 
     return settings;
 }
