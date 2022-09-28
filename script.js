@@ -7,6 +7,12 @@ var lowerChars = "abcdefghijklmnopqrstuvwxyz";
 var numberChars = "0123456789";
 var specialChars = "!@#$%^&*";
 
+// regular expressions for character checks
+var upperReg = new RegExp("(?=.*[A-Z])");
+var lowerReg = new RegExp("(?=.*[a-z])");
+var numReg = new RegExp("(?=.*[0-9])");
+var specialReg = new RegExp(`(?=.*[${specialChars}])`);
+
 // Write password to the #password input
 function writePassword() {
 
@@ -19,6 +25,10 @@ function writePassword() {
     // make sure the prompts returned succesfully
     if (settings != null){
         var password = generatePassword(settings);
+
+        var isValid = validatePassword(password, settings);
+        console.log(isValid);
+
         passwordText.value = password;
         alert(`Password Generated: ${password}`);
     }
@@ -96,3 +106,25 @@ function generatePassword(settings){
     return password;
 }
 
+// check if the settings aggrees with a password
+// (ensures that atleast one character of required type is present)
+function validatePassword(password, settings){
+
+    if (settings.upper && !upperReg.test(password)){
+        return false;
+    }
+    
+    if (settings.lower && !lowerReg.test(password)){
+        return false;
+    }
+
+    if (settings.numeric && !numReg.test(password)){
+        return false;
+    }
+
+    if (settings.special && !specialReg.test(password)){
+        return false;
+    }
+    
+    return true;
+}
