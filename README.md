@@ -4,7 +4,7 @@
 A tool to produce a randomly generated password. It provides a choice for how many characters (8-128), and the options to include: upper-case, lower-case, numbers, or special characters.
 
 ## Screenshot
-![preview of the website!](./screenshot.PNG)
+![preview of the website!](./assets/screenshot.PNG)
 ## Deployed
 [https://vicdotexe.github.io/password-generator/](https://vicdotexe.github.io/password-generator/)
 
