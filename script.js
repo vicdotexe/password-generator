@@ -18,8 +18,8 @@ function writePassword() {
 
     // make sure the prompts returned succesfully
     if (settings != null){
-        var chars = getValidCharacters(settings);
-        console.log(chars);
+        var password = generatePassword(settings);
+        console.log(password);
     }
 
 }
@@ -75,4 +75,19 @@ function getValidCharacters(settings){
     }
 
     return chars;
+}
+
+// generate a random password based on settings provided
+function generatePassword(settings){
+
+    var chars = getValidCharacters(settings);
+    var password = "";
+
+    for (var i = 0; i < settings.count; i++){
+        var randomNum = Math.floor(Math.random() * chars.length);
+        var randChar = chars.charAt(randomNum);
+        password += randChar;
+    }
+
+    return password;
 }
