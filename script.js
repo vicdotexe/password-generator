@@ -1,6 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// character sets
+var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+var numberChars = "0123456789";
+var specialChars = "!@#$%^&*";
+
 // Write password to the #password input
 function writePassword() {
 
@@ -12,7 +18,8 @@ function writePassword() {
 
     // make sure the prompts returned succesfully
     if (settings != null){
-        console.log(settings);
+        var chars = getValidCharacters(settings);
+        console.log(chars);
     }
 
 }
@@ -33,13 +40,13 @@ function promptUserSettings(){
         alert("Must enter a valid number between 8 and 128");
         return null;
     }
-    
+
     settings.count = qty;
     settings.upper = confirm("Use upper-case characters?");
     settings.lower = confirm("Use lower-case characters?");
 
     // return null if impossible
-    if (!useUpper && !useLower){
+    if (!settings.upper && !settings.lower){
         alert("Must enable either upper-case or lower-case.");
         return null;
     }
@@ -48,4 +55,24 @@ function promptUserSettings(){
     settings.special = confirm("Use special characters?");
 
     return settings;
+}
+
+// returns a string containing all the valid characters
+// under the conditions of the settings
+function getValidCharacters(settings){
+    var chars = "";
+    if (settings.upper){
+        chars = chars.concat(upperChars);
+    }
+    if (settings.lower){
+        chars = chars.concat(lowerChars);
+    }
+    if (settings.numeric){
+        chars = chars.concat(numberChars);
+    }
+    if (settings.special){
+        chars = chars.concat(specialChars);
+    }
+
+    return chars;
 }
