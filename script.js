@@ -27,7 +27,11 @@ function writePassword() {
         var password = generatePassword(settings);
 
         var isValid = validatePassword(password, settings);
-        console.log(isValid);
+        
+        while (!isValid){
+            password = generatePassword(settings);
+            isValid = validatePassword(password, settings);
+        }
 
         passwordText.value = password;
         alert(`Password Generated: ${password}`);
